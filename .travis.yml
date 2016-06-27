@@ -14,4 +14,5 @@ before_install:
 script:
 - gem install fastlane --no-ri --no-rdoc
 - npm install -g newspring/meteor-launch#update
-- launch test
+- launch build launch-todos-example.meteor.com
+- launch hockey
