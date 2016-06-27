@@ -5,6 +5,8 @@ language: node_js
 node_js:
 - '4'
 before_install:
+- openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
+  -in .travis/launch.json.enc -out launch.json -d
 - rvm install 2.2.5
 - rvm use 2.2.5
 script:
