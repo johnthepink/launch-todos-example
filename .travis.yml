@@ -12,6 +12,7 @@ before_install:
 - rvm install 2.2.5
 - rvm use 2.2.5
 script:
+- curl https://install.meteor.com | /bin/sh
 - gem install fastlane --no-ri --no-rdoc
 - npm install -g newspring/meteor-launch#update
 - launch build launch-todos-example.meteor.com
