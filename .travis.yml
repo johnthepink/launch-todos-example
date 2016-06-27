@@ -8,6 +8,6 @@ before_install:
 - rvm install 2.2.5
 - rvm use 2.2.5
 script:
-- gem install fastlane && gem update fastlane
-- git clone -b update git@github.com:NewSpring/meteor-launch.git .launch && cd .launch && npm install && npm link
+- gem install fastlane --no-ri --no-rdoc
+- npm install -g newspring/meteor-launch#update
 - launch test
