@@ -2,6 +2,7 @@ node_modules
 
 .build
 .fastlane
+.keystore
 launch.json
 secrets.tar
 *.mobileprovision

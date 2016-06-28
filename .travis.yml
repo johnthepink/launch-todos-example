@@ -14,12 +14,27 @@ before_install:
   -in .travis/secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
 install:
+# ruby
 - rvm install 2.2.5
 - rvm use 2.2.5
+
+# fastlane
 - gem install fastlane --no-ri --no-rdoc
+
+# meteor
 - curl https://install.meteor.com | /bin/sh
+
+# npm
 - npm install
+
+# launch
 - npm install -g newspring/meteor-launch#update
+
+# android
+- brew install android-sdk
+- export ANDROID_HOME=/usr/local/opt/android-sdk
+- echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.3,android-23
+- export ANDROID_ZIPALIGN=/usr/local/opt/android-sdk/build-tools/23.0.3/zipalign
 script:
 - launch build launch-todos-example.meteor.com
 - launch hockey
