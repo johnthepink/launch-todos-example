@@ -3,6 +3,7 @@ node_modules
 .build
 .fastlane
 launch.json
+secrets.tar
 *.mobileprovision
 *.app.dSYM.zip
 *.ipa
