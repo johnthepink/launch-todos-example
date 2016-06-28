@@ -7,6 +7,7 @@ node_js:
 env:
 - DEPLOY_TARGET=hockey DEPLOY_IOS=true DEPLOY_ANDROID=true
 - DEPLOY_TARGET=testflight DEPLOY_IOS=true DEPLOY_ANDROID=false
+- DEPLOY_TARGET=playstore DEPLOY_IOS=false DEPLOY_ANDROID=true
 before_install:
 - openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
   -in .travis/secrets.tar.enc -out secrets.tar -d
@@ -36,9 +37,10 @@ install:
 - if [ $DEPLOY_ANDROID == "true" ]; then export ANDROID_ZIPALIGN=/usr/local/opt/android-sdk/build-tools/23.0.3/zipalign; fi
 
 # remove platforms if possible
-- if [ $DEPLOY_TARGET == "testflight" ]; then meteor remove-platform android; fi
-- if [ $DEPLOY_TARGET == "playstore" ]; then meteor remove-platform ios; fi
+- if [ $DEPLOY_IOS == "false" ]; then meteor remove-platform ios; fi
+- if [ $DEPLOY_ANDROID == "false" ]; then meteor remove-platform android; fi
 script:
 - launch build launch-todos-example.meteor.com
 - if [ $DEPLOY_TARGET == "hockey" ]; then launch hockey; fi
 - if [ $DEPLOY_TARGET == "testflight" ]; then launch testflight; fi
+- if [ $DEPLOY_TARGET == "playstore" ] ; then launch playstore; fi
