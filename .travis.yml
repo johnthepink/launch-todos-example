@@ -13,6 +13,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
   -in .travis/secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
+- cp .keystore ~/.keystore
 install:
 # ruby
 - rvm install 2.2.5
