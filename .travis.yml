@@ -1,13 +1,24 @@
-os:
-- osx
-osx_image: xcode7.3
 language: node_js
 node_js:
 - '4'
-env:
-- DEPLOY_TARGET=hockey DEPLOY_IOS=true DEPLOY_ANDROID=true
-- DEPLOY_TARGET=testflight DEPLOY_IOS=true DEPLOY_ANDROID=false
-- DEPLOY_TARGET=playstore DEPLOY_IOS=false DEPLOY_ANDROID=true
+matrix:
+  include:
+  - os: osx,
+    osx_image: xcode7.3
+    env: DEPLOY_TARGET=hockey DEPLOY_IOS=true DEPLOY_ANDROID=false
+  - os: linux,
+    env: DEPLOY_TARGET=hockey DEPLOY_IOS=false DEPLOY_ANDROID=true
+  - os: osx,
+    osx_image: xcode7.3
+    env: DEPLOY_TARGET=testflight DEPLOY_IOS=true DEPLOY_ANDROID=false
+  - os: linux,
+    env: DEPLOY_TARGET=playstore DEPLOY_IOS=false DEPLOY_ANDROID=true
+before_cache:
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
 before_install:
 - openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
   -in .travis/secrets.tar.enc -out secrets.tar -d
@@ -23,6 +34,7 @@ install:
 
 # meteor
 - curl https://install.meteor.com | /bin/sh
+- export PATH=$PATH:$HOME/.meteor
 
 # npm
 - npm install
@@ -31,14 +43,18 @@ install:
 - npm install -g newspring/meteor-launch#update
 
 # android
-- if [ $DEPLOY_ANDROID == "true" ]; then brew install android-sdk; fi
-- if [ $DEPLOY_ANDROID == "true" ]; then export ANDROID_HOME=/usr/local/opt/android-sdk; fi
-- if [ $DEPLOY_ANDROID == "true" ]; then echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.3,android-23; fi
-- if [ $DEPLOY_ANDROID == "true" ]; then export ANDROID_ZIPALIGN=/usr/local/opt/android-sdk/build-tools/23.0.3/zipalign; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then wget https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then tar zxvf android-sdk_r24.4.1-linux.tgz > /dev/null; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then mv android-sdk-linux .android; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then export ANDROID_HOME="$TRAVIS_BUILD_DIR/.android"; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then echo y | .android/tools/android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.3,android-23; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then export ANDROID_ZIPALIGN="$TRAVIS_BUILD_DIR/.android/build-tools/23.0.3/zipalign"; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then sudo apt-get install lib32z1 libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5; fi
 
 # remove platforms if possible
 - if [ $DEPLOY_IOS == "false" ]; then meteor remove-platform ios; fi
 - if [ $DEPLOY_ANDROID == "false" ]; then meteor remove-platform android; fi
+
 script:
 - launch build launch-todos-example.meteor.com
 - if [ $DEPLOY_TARGET == "hockey" ]; then launch hockey; fi
