@@ -22,7 +22,7 @@ install:
 - gem install fastlane --no-ri --no-rdoc
 
 # meteor
-- curl https://install.meteor.com | /bin/sh
+- if [ ! -d ~/.meteor ]; then curl https://install.meteor.com | /bin/sh; fi
 
 # npm
 - npm install
