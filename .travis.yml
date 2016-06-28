@@ -5,7 +5,8 @@ language: node_js
 node_js:
 - '4'
 cache:
-- "$HOME/.rvm"
+  directories:
+  - "$HOME/.rvm"
 before_install:
 - openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
   -in .travis/secrets.tar.enc -out secrets.tar -d
