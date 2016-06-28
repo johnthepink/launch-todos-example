@@ -4,6 +4,9 @@ osx_image: xcode7.3
 language: node_js
 node_js:
 - '4'
+env:
+- DEPLOY_TARGET=hockey
+- DEPLOY_TARGET=testflight
 before_install:
 - openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
   -in .travis/secrets.tar.enc -out secrets.tar -d
@@ -33,4 +36,5 @@ install:
 - export ANDROID_ZIPALIGN=/usr/local/opt/android-sdk/build-tools/23.0.3/zipalign
 script:
 - launch build launch-todos-example.meteor.com
-- launch hockey
+- if [ $DEPLOY_TARGET == "hockey" ]; then launch hockey; fi
+- if [ $DEPLOY_TARGET == "testflight" ]; then launch testflight; fi
