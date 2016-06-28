@@ -7,10 +7,8 @@ node_js:
 cache:
 - "$HOME/.rvm"
 before_install:
-- openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
-  -in .travis/distribution.p12.enc -out distribution.p12 -d
-- openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
-  -in .travis/launch.json.enc -out launch.json -d
+- openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv -in .travis/distribution.p12.enc -out distribution.p12 -d
+- openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv -in .travis/launch.json.enc -out launch.json -d
 - rvm install 2.2.5
 - rvm use 2.2.5
 script:
