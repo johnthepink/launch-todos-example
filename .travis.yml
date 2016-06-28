@@ -5,8 +5,8 @@ language: node_js
 node_js:
 - '4'
 env:
-- DEPLOY_TARGET=hockey
-- DEPLOY_TARGET=testflight
+- DEPLOY_TARGET=hockey DEPLOY_IOS=true DEPLOY_ANDROID=true
+- DEPLOY_TARGET=testflight DEPLOY_IOS=true DEPLOY_ANDROID=false
 before_install:
 - openssl aes-256-cbc -K $encrypted_af3788150926_key -iv $encrypted_af3788150926_iv
   -in .travis/secrets.tar.enc -out secrets.tar -d
@@ -18,7 +18,7 @@ install:
 - rvm use 2.2.5
 
 # fastlane
-- gem install fastlane --no-ri --no-rdoc
+- if [ $DEPLOY_IOS == "true" ]; then gem install fastlane --no-ri --no-rdoc; fi
 
 # meteor
 - curl https://install.meteor.com | /bin/sh
@@ -30,10 +30,14 @@ install:
 - npm install -g newspring/meteor-launch#update
 
 # android
-- brew install android-sdk
-- export ANDROID_HOME=/usr/local/opt/android-sdk
-- echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.3,android-23
-- export ANDROID_ZIPALIGN=/usr/local/opt/android-sdk/build-tools/23.0.3/zipalign
+- if [ $DEPLOY_ANDROID == "true" ]; then brew install android-sdk; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then export ANDROID_HOME=/usr/local/opt/android-sdk; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-23.0.3,android-23; fi
+- if [ $DEPLOY_ANDROID == "true" ]; then export ANDROID_ZIPALIGN=/usr/local/opt/android-sdk/build-tools/23.0.3/zipalign; fi
+
+# remove platforms if possible
+- if [ $DEPLOY_TARGET == "testflight" ]; then meteor remove-platform android; fi
+- if [ $DEPLOY_TARGET == "playstore" ]; then meteor remove-platform ios; fi
 script:
 - launch build launch-todos-example.meteor.com
 - if [ $DEPLOY_TARGET == "hockey" ]; then launch hockey; fi
