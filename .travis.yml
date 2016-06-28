@@ -24,7 +24,7 @@ install:
 
 # meteor
 - if [ ! -d ~/.meteor ]; then curl https://install.meteor.com | /bin/sh; fi
-- ln -s ~/.meteor/meteor /usr/local/bin/meteor
+- ln -s $HOME/.meteor/meteor /usr/local/bin/meteor
 
 # npm
 - npm install
