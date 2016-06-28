@@ -1,17 +1,19 @@
 language: node_js
-node_js:
-- '4'
 matrix:
   include:
   - os: osx,
     osx_image: xcode7.3
+    node_js: '4'
     env: DEPLOY_TARGET=hockey DEPLOY_IOS=true DEPLOY_ANDROID=false
   - os: linux,
+    node_js: '4'
     env: DEPLOY_TARGET=hockey DEPLOY_IOS=false DEPLOY_ANDROID=true
   - os: osx,
     osx_image: xcode7.3
+    node_js: '4'
     env: DEPLOY_TARGET=testflight DEPLOY_IOS=true DEPLOY_ANDROID=false
   - os: linux,
+    node_js: '4'
     env: DEPLOY_TARGET=playstore DEPLOY_IOS=false DEPLOY_ANDROID=true
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
