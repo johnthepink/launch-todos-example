@@ -42,7 +42,7 @@ install:
 - npm install
 
 # launch
-- npm install -g newspring/meteor-launch#update
+- npm install -g meteor-launch
 
 # android
 - if [ $DEPLOY_ANDROID == "true" ]; then wget https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz; fi
