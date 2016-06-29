@@ -58,7 +58,10 @@ install:
 - if [ $DEPLOY_ANDROID == "false" ]; then meteor remove-platform android; fi
 
 script:
-- launch build launch-todos-example.meteor.com
+- export DEPLOY_HOSTNAME=galaxy.meteor.com
+- export METEOR_SESSION_FILE=deployment_token.json
+- meteor deploy launch-todos-example.meteorapp.com
+- launch build launch-todos-example.meteorapp.com
 - if [ $DEPLOY_TARGET == "hockey" ]; then launch hockey; fi
 - if [ $DEPLOY_TARGET == "testflight" ]; then launch testflight; fi
 - if [ $DEPLOY_TARGET == "playstore" ] ; then launch playstore; fi
