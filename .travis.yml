@@ -60,8 +60,8 @@ install:
 script:
 - export DEPLOY_HOSTNAME=galaxy.meteor.com
 - export METEOR_SESSION_FILE=deployment_token.json
-- meteor deploy launch-todos-example.meteorapp.com
-- launch build launch-todos-example.meteorapp.com --settings settings.json
+- meteor deploy launch-todos-example.meteorapp.com --settings settings.json
+- launch build launch-todos-example.meteorapp.com settings.json
 - if [ $DEPLOY_TARGET == "hockey" ]; then launch hockey; fi
 - if [ $DEPLOY_TARGET == "testflight" ]; then launch testflight; fi
 - if [ $DEPLOY_TARGET == "playstore" ] ; then launch playstore; fi
