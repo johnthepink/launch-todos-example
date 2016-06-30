@@ -6,5 +6,5 @@ App.info({
   email: 'web@newspring.cc',
   website: 'https://newspring.cc',
   version: '0.0.1',
-  buildNumber: '7'
+  buildNumber: '8'
 });
