@@ -2,6 +2,13 @@
 
 [![Build Status](https://travis-ci.org/NewSpring/launch-todos-example.svg?branch=master)](https://travis-ci.org/NewSpring/launch-todos-example)
 
+1. [Build on Travis](https://travis-ci.org/NewSpring/launch-todos-example)
+2. [Site on Galaxy](https://launch-todos-example.meteorapp.com/)
+3. [iOS app download on Hockey](https://rink.hockeyapp.net/apps/dc6361da5fdd4c42ba3aed76ef894f22)
+4. [Android app download on Hockey](https://rink.hockeyapp.net/apps/a6221f3834f149599f8da90bd23fd147)
+
+The Google Play and TestFlight uploads you will have to take my word for, but you can see that they are uploading in the Travis builds.
+
 This is a fork of https://github.com/meteor/simple-todos to demonstrate how to use the [launch tool](https://github.com/newspring/meteor-launch) for building/deploying mobile apps.
 
 ![screenshot](screenshot.png)
