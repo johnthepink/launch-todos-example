@@ -11,8 +11,6 @@ The Google Play and TestFlight uploads you will have to take my word for, but yo
 
 This is a fork of https://github.com/meteor/simple-todos to demonstrate how to use the [launch tool](https://github.com/newspring/meteor-launch) for building/deploying mobile apps.
 
-![screenshot](screenshot.png)
-
 ## launch.json
 
 ```json
