@@ -16,16 +16,14 @@ This is a fork of https://github.com/meteor/simple-todos to demonstrate how to u
 ```json
 {
   "XCODE_SCHEME_NAME": "LaunchTodosExample",
-  "XCODE_PROJECT": ".build/ios/project/LaunchTodosExample.xcodeproj",
   "APP_IDENTIFIER": "cc.newspring.LaunchTodosExample",
   "APPLE_ID": "email@email.com",
-  "FASTLANE_PASSWORD": "password ",
+  "FASTLANE_PASSWORD": "password",
   "KEYCHAIN_PASSWORD": "password",
   "CERT_KEY_PATH": "distribution.p12",
   "CERT_PASSWORD": "password",
   "SLACK_URL": "https://hooks.slack.com/services/things",
   "SLACK_ROOM": "#room",
-  "ANDROID_BUILD_FOLDER": ".build/android",
   "ANDROID_STORE_PASS": "password",
   "ANDROID_KEY": "launch-todos-example",
   "ANDROID_ZIPALIGN": "path/to/zipalign",
