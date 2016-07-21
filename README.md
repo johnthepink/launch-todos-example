@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/NewSpring/launch-todos-example.svg?branch=master)](https://travis-ci.org/NewSpring/launch-todos-example)
 
 1. [Build on Travis](https://travis-ci.org/NewSpring/launch-todos-example)
-2. [Site on Galaxy](https://launch-todos-example.meteorapp.com/)
+2. [Site on Heroku](https://launch-todos-example.herokuapp.com/)
 3. [iOS app download on Hockey](https://rink.hockeyapp.net/apps/dc6361da5fdd4c42ba3aed76ef894f22)
 4. [Android app download on Hockey](https://rink.hockeyapp.net/apps/a6221f3834f149599f8da90bd23fd147)
 

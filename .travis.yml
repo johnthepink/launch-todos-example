@@ -58,8 +58,14 @@ install:
 - if [ $DEPLOY_ANDROID == "false" ]; then meteor remove-platform android; fi
 
 script:
-- launch galaxy launch-todos-example.meteorapp.com settings.json
-- launch build launch-todos-example.meteorapp.com settings.json
+- launch build launch-todos-example.herokuapp.com settings.json
 - if [ $DEPLOY_TARGET == "hockey" ]; then launch hockey; fi
 - if [ $DEPLOY_TARGET == "testflight" ]; then launch testflight; fi
 - if [ $DEPLOY_TARGET == "playstore" ] ; then launch playstore; fi
+deploy:
+  provider: heroku
+  api_key:
+    secure: Dd0klkm+/XI3bWYQ0EU8xLwlXApwYp+icOxG3Xdy9IFnZcNhh9nms+V+nd+aMmfziNLNOYcXHK1tpJMQZ7gXyeZWj5G96oWOBNtB+/lLzEGEC7AONzoV/iLRo9txNeeuOB0Q1v3/Jg4I4V7pCbTeoFc0s9rHyUHJ4t/FiZBpLXnJItbO4zlXJdMbSAdRycnSYay3XOckcyJ9fpmFUH6Tu3S9kv6RT61+0mWoT5QuS/ME+Ur5wNuR8SVSMeD21BykUFNOGg+5Hwukaz9MfoDZ6Jzii2MpJdgK6xYH1PVwdNEotSm9vJYt09HfnkIqHoVuClpZnY1WmAAaFjuIixY21J5D5TbVahqFbS35eHgMP/kXS/sPhNDegrYIfyEFeSf14c8Ut6oM6kkBVUue7Byx17jo2qQT2g1Z1ldFD2o9nvFYwGXW9UMnOVwxlahYQm1VvNfHwrJzVPCII2OOc2noANTPlB9efc1XPt+IL7pEZhWl+2Ltg5j1WLAFFScaF2AFCl/v78LM1fHJJXOK/V9436ZaGx5nhSw/QbfYY/YhD4j5E4xxslaUV+WE5PXd2+00tRyZM2AbJntoXcBM6gClH/qowc3BpNrk8TJxEnXkl7Gr/zvICFhtjFpVfaBm9pNAVsQ9wXVACoQ6+O4zpeGP68vbg1dZRjZA7V73LN+e7Gk=
+  app: launch-todos-example
+  on:
+    repo: NewSpring/launch-todos-example
